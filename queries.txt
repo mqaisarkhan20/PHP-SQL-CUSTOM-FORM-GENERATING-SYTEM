@@ -1,0 +1,64 @@
+<?php 
+
+// USERS
+'CREATE TABLE users (
+    id int NOT NULL Identity(1,1) PRIMARY KEY,
+    username varchar(255),
+    password varchar(255),
+    role varchar(50),
+    datetime datetime
+)'
+
+// FORMS
+'CREATE TABLE forms (
+    id int NOT NULL Identity(1,1) PRIMARY KEY,
+    name varchar(255),
+    header_op int,
+<!-- footer option moet er ook bij-->
+    footer_op int,
+    datetime datetime
+)'
+<!-- Verander image_option bit NOT Null naar image_option int NOT NULL, zodat er meerdere cijfers (zoals 1 ja, 2 nee, 3 multi-pics) aan gekopelled kunnen worden
+// QUESTIONS
+'CREATE TABLE questions (
+    id int NOT NULL Identity(1,1) PRIMARY KEY,
+    form_id int NOT NULL,
+    question varchar(255) NOT NULL,
+    image_option bit NOT NULL,
+    textbox_op bit NOT NULL,
+    answer_op int NOT NULL,
+    datetime datetime
+)'
+
+// ANSWERS
+'CREATE TABLE answers (
+    id int NOT NULL Identity(1,1) PRIMARY KEY,
+    form_id int NOT NULL,
+    question_id int NOT NULL,
+    remarks varchar(255),
+    answer bit,
+    user_id int,
+    form_v_id varchar(255),
+    project_number varchar(255),
+    bewerking varchar(255),
+    filename varchar(500),
+    datetime datetime
+)'
+
+// BEWERKINGS LET OP AANGEPAST IVM "NB" VOOR NUMMEr
+'CREATE TABLE bewerkings (
+    id int NOT NULL Identity(1, 1) PRIMARY KEY,
+    bewerking_no varchar(255),
+    name varchar(255)
+)'
+
+// CREATE ADMIN USER
+'INSERT INTO [dbo].[users]
+           ([username]
+           ,[password]
+           ,[role])
+     VALUES
+           ("admin"
+           ,"$2y$14$QlnefpX.ZtVoLnme9AtVK.7rX3EncINtarzuSS737F6clL4e7CwXy"
+           ,"admin"
+)'
